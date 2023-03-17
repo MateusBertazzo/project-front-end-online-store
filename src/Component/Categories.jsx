@@ -10,7 +10,6 @@ class Categories extends Component {
     this.setState({}, async () => {
       const setCategorie = await getCategories();
       this.setState({ categories: setCategorie });
-      console.log(setCategorie);
     });
   }
 

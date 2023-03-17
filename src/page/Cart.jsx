@@ -7,7 +7,7 @@ class Cart extends Component {
         <p data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
         </p>
-        <link to="/Cart" data-testid="shopping-cart-button" />
+
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Categories from '../Component/Categories';
+
 class Home extends Component {
   render() {
     return (

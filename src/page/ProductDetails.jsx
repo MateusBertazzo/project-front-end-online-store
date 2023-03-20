@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { getProductById } from '../services/api';
+import { getProductById, handleClick } from '../services/api';
 
 class ProductDetails extends Component {
   state = {
@@ -19,7 +19,7 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { details: { title, thumbnail, price } } = this.state;
+    const { details: { id, title, thumbnail, price } } = this.state;
     return (
       <div>
         <div>
@@ -27,8 +27,15 @@ class ProductDetails extends Component {
           <img data-testid="product-detail-image" src={ thumbnail } alt={ title } />
           <p data-testid="product-detail-price">{price}</p>
         </div>
+        <button
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => handleClick(id, title, thumbnail, price) }
+        >
+          Adicionar ao Carrinho
+
+        </button>
         <Link to="/cart">
-          <button data-testid="shopping-cart-button">Comprar</button>
+          <button data-testid="shopping-cart-button">Carrinho de Compras</button>
         </Link>
       </div>
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { handleClick } from '../services/api';
 
 class Products extends Component {
   render() {
@@ -17,6 +18,13 @@ class Products extends Component {
             <h4>{ price }</h4>
           </div>
         </Link>
+        <button
+          onClick={ () => handleClick(id, title, thumbnail, price) }
+          data-testid="product-add-to-cart"
+        >
+          Adiciona
+
+        </button>
       </div>
     );
   }

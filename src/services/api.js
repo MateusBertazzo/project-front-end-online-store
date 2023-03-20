@@ -19,3 +19,20 @@ export async function getProductById(productId) {
   const requestJson = await request.json();
   return requestJson;
 }
+
+export async function handleClick(id, title, thumbnail, price) {
+  const itens = { id, title, thumbnail, price, quantity: 1 };
+  let itens2 = localStorage.getItem('cart') || [];
+
+  if (itens2.length) {
+    itens2 = JSON.parse(itens2);
+  }
+
+  itens2.forEach((check, index) => {
+    if (check.id === itens2.id) {
+      itens2[index].quantity += 1;
+    }
+  });
+
+  localStorage.setItem('cart', JSON.stringify([...itens2, itens]));
+}

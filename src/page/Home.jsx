@@ -21,5 +21,4 @@ class Home extends Component {
     );
   }
 }
-// asd
 export default Home;

@@ -21,18 +21,29 @@ export async function getProductById(productId) {
 }
 
 export async function handleClick(id, title, thumbnail, price) {
-  const itens = { id, title, thumbnail, price, quantity: 1 };
-  let itens2 = localStorage.getItem('cart') || [];
-
-  if (itens2.length) {
-    itens2 = JSON.parse(itens2);
+  const newItem = { id, title, thumbnail, price, quantity: 1 };
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const NUM = -1;
+  const existingItemIndex = cart.findIndex((item) => item.id === id);
+  if (existingItemIndex > NUM) {
+    cart[existingItemIndex].quantity += 1;
+  } else {
+    cart.push(newItem);
   }
 
-  itens2.forEach((check, index) => {
-    if (check.id === itens2.id) {
-      itens2[index].quantity += 1;
-    }
-  });
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
 
-  localStorage.setItem('cart', JSON.stringify([...itens2, itens]));
+export async function handleClickDecrease(id, title, thumbnail, price) {
+  const newItem = { id, title, thumbnail, price, quantity: 1 };
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const NUM = -1;
+  const existingItemIndex = cart.findIndex((item) => item.id === id);
+  if (existingItemIndex > NUM) {
+    cart[existingItemIndex].quantity -= 1;
+  } else {
+    cart.push(newItem);
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
 }

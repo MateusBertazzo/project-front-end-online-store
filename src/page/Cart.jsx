@@ -10,10 +10,13 @@ class Cart extends Component {
   }
 
   getLocalStorage = () => {
-    const getData = JSON.parse(localStorage.getItem('cart'));
+    let getData = JSON.parse(localStorage.getItem('cart'));
 
+    if (getData === null) {
+      getData = [];
+    }
     this.setState({
-      localStorageCart: [...getData],
+      localStorageCart: getData,
     });
   };
 
